@@ -1,8 +1,10 @@
 //________________________________
 //
-//   	NS2 Combat Mod     
-//	Made by JimWest and MCMLXXXIV, 2012
-//
+//      SparkBasic
+//	   by MCMLXXXIV, 2012
+// Please feel free to reuse this file however you want! 
+// If you use SparkBasic as the basis for your mod,
+// please include MCMLXXXIV and fsfod for his ClassHooker work in the credits!
 //________________________________
 
 // Load the script from fsfod that we can hook some functions

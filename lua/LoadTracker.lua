@@ -12,6 +12,7 @@ if(not LoadTracker) then
   	LoadAfterScripts = {},
   	LoadedFileHooks = {},
   	OverridedFiles = {},
+  	BlockedScripts = {},
   }
 
   LoadTracker.NormalizePath = NormalizePath
@@ -29,7 +30,7 @@ if(not LoadTracker) then
   	
   	local ret
   	
-  	if(NewPath and NewPath ~= "") then
+  	if(NewPath) then
   		ret = Script_Load(NewPath)
   	end
   	
@@ -46,6 +47,10 @@ end
 
 function LoadTracker:ScriptLoadStart(normalizedsPath, unnormalizedsPath)
 	table.insert(self.LoadStack, normalizedsPath)
+	
+	if(self.BlockedScripts[normalizedsPath]) then
+	  return false
+  end
 	
 	--store the stack index so we can be sure were not reacting to a double load of the same file
 	if(not self.LoadedScripts[normalizedsPath]) then
@@ -121,6 +126,8 @@ end
 
 function LoadTracker:SetFileOverride(tobeReplaced, overrider, overriderSource)
 	
+	assert(overrider and type(overrider) == "string" and overrider ~= "")
+	
 	local tobeNorm = NormalizePath(tobeReplaced)
 	
 	if(self.LoadedScripts[tobeNorm]) then
@@ -138,6 +145,21 @@ function LoadTracker:SetFileOverride(tobeReplaced, overrider, overriderSource)
 	end
 	
 	self.OverridedFiles[tobeNorm] = entry
+end
+
+function LoadTracker:BlockScriptLoad(scriptPath)
+  
+	local tobeNorm = NormalizePath(scriptPath)
+	
+	if(self.LoadedScripts[tobeNorm]) then
+		error("cannot block script "..scriptPath.." because the script is already loaded")
+	end
+	
+	if(self.OverridedFiles[tobeNorm]) then
+		error(string.format("cannot block script %s because its already been overriden by %s", tobeReplaced, self.OverridedFiles[tobeReplaced]))
+	end
+
+	self.BlockedScripts[tobeNorm] = true
 end
 
 function LoadTracker:ScriptLoadFinished(normalizedsPath)
@@ -196,25 +218,6 @@ function LoadTracker:CheckInject(className, mapname)
   end
 end
 
-if(not HotReload) then
-  
-  --Hook Shared.LinkClassToMap so we know when we can insert any hooks for a class
-  local OrginalLinkClassToMap = Shared.LinkClassToMap
-  
-  Shared.LinkClassToMap = function(...)
-   
-    local classname, entityname = ...
-    
-    --let the orignal function spit out an error if we don't have the correct args
-    if(classname and entityname) then
-      ///LoadTracker:CheckInject(...)
-  	  ClassHooker:LinkClassToMap(...)
-    end
-  	
-  	OrginalLinkClassToMap(...)
-  end
-
-end
 
 function LoadTracker:GetCurrentLoadingFile()
 	return self.LoadStack[#self.LoadStack]

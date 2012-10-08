@@ -1,11 +1,14 @@
 //________________________________
 //
-//   	NS2 Combat Mod     
-//	Made by JimWest and MCMLXXXIV, 2012
-//
+//      SparkBasic
+//	   by MCMLXXXIV, 2012
+// Please feel free to reuse this file however you want! 
+// If you use SparkBasic as the basis for your mod,
+// please include MCMLXXXIV and fsfod for his ClassHooker work in the credits!
 //________________________________
 
-// combat_FileOverrides.lua
+
+// sparkbasic_FileOverrides.lua
 
 // Use this to remove files entirely from the loading process.
 
@@ -34,9 +37,7 @@ for index, override in ipairs(kCombatFileRemovals) do
 	Shared.Message ("Removing source file " .. override)
 	
 	// Hook into the load tracker code to remove the file when we come across it.
-	// The normalized string is always lower case.
-	override = string.lower(override)
-	LoadTracker:SetFileOverride(override, "")
+	LoadTracker:BlockScriptLoad(override)
 end
 
 for index, stub in ipairs(kCombatEntityStubs) do
