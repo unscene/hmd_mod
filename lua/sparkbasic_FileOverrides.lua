@@ -17,19 +17,8 @@ kSparkBasicFileRemovals = {
 	// Neutral structures
 	"lua/ResourcePoint.lua",
 	"lua/ResourceTower.lua",
-	"lua/Door.lua",
-	"lua/Reverb.lua",
-	"lua/Location.lua",
-	"lua/Trigger.lua",
-	"lua/Ladder.lua",
-	"lua/MinimapExtents.lua",
-	"lua/DeathTrigger.lua",
-	"lua/TimedEmitter.lua",
-	"lua/Gamerules.lua",
 	"lua/NS2Gamerules.lua",
 	"lua/TechPoint.lua",
-	"lua/BaseSpawn.lua",
-	"lua/ReadyRoomSpawn.lua",
 	"lua/Pheromone.lua",
 	"lua/Weapons/ViewModel.lua",
 	
@@ -52,9 +41,6 @@ kSparkBasicFileRemovals = {
 	"lua/AmmoPack.lua",
 	"lua/MedPack.lua",
 	"lua/CatPack.lua",
-	"lua/Effect.lua",
-	"lua/AmbientSound.lua",
-	"lua/Particles.lua",
 
 	// Alien Comm Abilities
 	"lua/CommAbilities/Alien/CragUmbra.lua",
@@ -116,11 +102,18 @@ kSparkBasicFileRemovals = {
 	// Misc
 	"lua/PowerPoint.lua",
 	"lua/SentryBattery.lua",
-	"lua/AlienTeamInfo.lua"
+	"lua/AlienTeamInfo.lua",
 }
 
 // Case matters here!
 kSparkBasicEntityStubs = {
+	"NS2Gamerules",
+	"TechPoint",
+	"Hive",
+	"CommandStation",
+	"InfantryPortal",
+	"Cyst",
+	"Egg",
 }
 
 if #kSparkBasicFileRemovals > 0 then
