@@ -23,6 +23,7 @@ Script.Load("lua/sparkbasic_FileOverrides.lua")
 Script.Load("lua/Client.lua")
 
 // new functions and classes with no hooks
+Script.Load("lua/sparkbasic_Shared.lua")
 
 // Tell the class hooker that we've fully loaded.
 ClassHooker:OnLuaFullyLoaded()
