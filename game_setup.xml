@@ -1,7 +1,7 @@
 <game>
-	<name>sparkbasic</name>
-	<description>SparkBasic Mod Platform</description>
-	<client>lua/sparkBasic_Client.lua</client>
-	<server>lua/sparkBasic_Server.lua</server>
+	<name>hmd_mod</name>
+	<description>HMD Mod</description>
+	<client>lua/Client.lua</client>
+	<server>lua/Server.lua</server>
     <soundinfo>sound/NS2.soundinfo</soundinfo>
 </game>
