@@ -1,7 +1,7 @@
 <game>
 	<name>hmd_mod</name>
 	<description>HMD Mod</description>
-	<client>lua/Client.lua</client>
+	<client>lua/hmd_Client.lua</client>
 	<server>lua/Server.lua</server>
     <soundinfo>sound/NS2.soundinfo</soundinfo>
 </game>
